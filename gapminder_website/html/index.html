@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Gapminder Analysis: Mohamed Dekna (M00556956) Alexander Spiteri (M00511874) Mannie Porteli (M00549673)</title>
+		<meta name="description" content="Gapminder Analysis" />
+		<meta name="keywords" content="fullscreen layout, boxes, responsive, page transitions,
+		css transitions, jquery, portfolio, template" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="../css/component2.css" />
+		<script src="../js/modernizr.custom.js"></script>
+		<!--  -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		
+		<script src="https://cdn.jsdelivr.net/npm/vega@5.7.2"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.0-beta.10"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@5.1.3"></script>
+
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">	
+			<div id="bl-main" class="bl-main">
+				<section>
+					<div class="bl-box">
+						<div class="bl-icon bl-icon-overview">
+								<img alt="" src="../images/dashboard.png" />
+							<h2>Interactive Dashboards</h2>
+						</div>
+					</div>
+					<div class="bl-content">
+						<div id="dashboard2"></div>
+						<br><br><br>
+						<div id="dashboard1"></div>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<section id="bl-work-section">
+					<div class="bl-box">
+						<div class="bl-icon bl-icon-trends">
+							<img alt="" src="../images/trend.png" />
+							<h2>Data Trends</h2>
+						</div>
+					</div>
+					<div class="bl-content">
+						<div id="trends"></div>
+						<br><br><br><br>
+						<div id="overview"></div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<section>
+					<div class="bl-box">
+						<div class="bl-icon bl-icon-corr">
+							<img alt="" src="../images/link.png" />
+							<h2>Metric Correlations</h2>
+						</div>
+					</div>
+					<div class="bl-content">
+							<div id="corr"></div>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<section>
+					<div class="bl-box">
+						<div class="bl-icon bl-icon-corr">
+							<img alt="" src="../images/distribution.png" />
+							<h2>Data Distribution</h2>
+						</div>
+					</div>
+					<div class="bl-content">
+						<div id="distr"></div>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+			</div>
+		</div><!-- /container -->
+		<style>.vega-actions {display: none}</style> <!-- to remove the vega export to svg text-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="../js/boxlayout.js"></script>
+		<script>
+			$(function() {
+				Boxlayout.init();
+			});
+		</script>
+		<script>
+			const specDistr = "../json/interactive.vlg.json";
+			vegaEmbed("#distr", specDistr)
+			// result.view provides access to the Vega View API
+			.then(result => console.log(result))
+			.catch(console.warn);
+			//
+			const specDash2 = "../json/dashboard2.vlg.json";
+			vegaEmbed("#dashboard2", specDash2)
+			// result.view provides access to the Vega View API
+			.then(result => console.log(result))
+			.catch(console.warn);
+			//
+			const specGdp = "../json/gdp.vlg.json";
+			vegaEmbed("#overview", specGdp)
+			// result.view provides access to the Vega View API
+			.then(result => console.log(result))
+			.catch(console.warn);
+			//
+			const specTrends = "../json/trends.vlg.json";
+			vegaEmbed("#trends", specTrends)
+			.then(result => console.log(result))
+			.catch(console.warn);
+			//
+			const specDash1 = "../json/dashboard1.vlg.json";
+			vegaEmbed("#dashboard1", specDash1)
+			.then(result => console.log(result))
+			.catch(console.warn);
+			//
+			const specCorr = "../json/corr.vlg.json";
+			vegaEmbed("#corr", specCorr)
+			.then(result => console.log(result))
+			.catch(console.warn);
+		</script>
+	</body>
+</html>
