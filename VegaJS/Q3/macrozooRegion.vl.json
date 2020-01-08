@@ -1,0 +1,56 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "Measurement trends 2014 - 2016",
+  "transform": [
+    {
+      "calculate": "year(datum.sampleDate)",
+      "as": "year"
+    },
+    {
+      "filter": "(datum.measure === 'Methylosmoline' || datum.measure === 'Macrozoobenthos') && datum.year >= 2014"
+    }
+  ],
+  "width": 400,
+  "height": 80,
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "mark": "trail",
+  "encoding": {
+    "x": {
+      "field": "sampleDate",
+      "type": "temporal",
+      "axis": {
+        "title": "Time",
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {
+        "title": "Value",
+        "grid": true
+      }
+    },
+    "color": {
+      "field": "measure",
+      "type": "nominal",
+      "legend": null
+    },
+    "row": {
+      "field": "location",
+      "type": "nominal"
+    },
+    "column": {
+      "field": "measure",
+      "type": "nominal"
+    }
+  },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "config": {}
+}

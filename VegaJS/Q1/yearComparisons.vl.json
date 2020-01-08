@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "title": "Number of measure samples taken throughout the years",
+  "transform": [
+    {
+      "calculate": "year(datum.sampleDate)",
+      "as": "year"
+    }
+  ],
+  "width": 500,
+  "height": 70,
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "sampleDate",
+      "timeUnit": "year",
+      "type": "ordinal"
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": null
+    },
+    "tooltip": [
+      {
+        "field": "year",
+        "type": "ordinal"
+      },
+      {
+        "field": "id",
+        "aggregate": "count",
+        "type": "quantitative"
+      }
+    ],
+    "color": {
+      "field": "location",
+      "type": "nominal"
+    },
+    "row": {
+      "field": "location",
+      "type": "nominal"
+    }
+  },
+  "config": {}
+}

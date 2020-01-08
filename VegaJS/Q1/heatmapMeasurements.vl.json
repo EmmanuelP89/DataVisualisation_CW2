@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "title": "Count of measure samples taken throughout the years",
+  "description": "This heat map will guide the user to determine which measures are frequently recorded. We will investigate complete cases and others that are increasing in recent interest.",
+  "config": {
+    "view": {
+      "strokeWidth": 0,
+      "step": 13
+    },
+    "axis": {
+      "domain": false
+    }
+  },
+  "transform": [
+    {
+      "filter": {
+        "timeUnit": "year",
+        "field": "sampleDate",
+        "range": [
+          2008,
+          2016
+        ]
+      }
+    }
+  ],
+  "width": 800,
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "sampleDate",
+      "timeUnit": "yearmonth",
+      "type": "ordinal",
+      "title": "YearMonth"
+    },
+    "y": {
+      "field": "measure",
+      "type": "nominal",
+      "title": "Month"
+    },
+    "color": {
+      "field": "measure",
+      "aggregate": "count",
+      "type": "nominal",
+      "legend": {
+        "title": null
+      }
+    }
+  }
+}

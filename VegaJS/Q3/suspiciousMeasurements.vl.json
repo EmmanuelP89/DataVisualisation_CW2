@@ -1,0 +1,212 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "Suspicious measurments and Macrozoobenthos between locations",
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "transform": [
+    {
+      "calculate": "year(datum.sampleDate)",
+      "as": "year"
+    },
+    {
+      "filter": "(datum.measure === 'Ammonium' || datum.measure === 'AGOC-3A' || datum.measure === 'Methylosmoline' || datum.measure === 'Chlorodinine' || datum.measure === 'Macrozoobenthos') && datum.year >= 2008"
+    }
+  ],
+  "vconcat": [
+    {
+      "encoding": {
+        "color": {
+          "condition": {
+            "field": "location",
+            "scale": {
+              "scheme": "tableau20"
+            },
+            "selection": "click",
+            "type": "nominal"
+          },
+          "value": "lightgray"
+        },
+        "x": {
+          "aggregate": "count",
+          "field": "measure",
+          "type": "nominal"
+        },
+        "y": {
+          "title": "Count of Measure",
+          "field": "location",
+          "type": "nominal",
+          "sort": "-x"
+        }
+      },
+      "width": 800,
+      "mark": "bar",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": [
+            "measure"
+          ],
+          "init": {
+            "measure": "Ammonium"
+          },
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "Ammonium",
+                "AGOC-3A",
+                "Methylosmoline",
+                "Chlorodinine",
+                "Macrozoobenthos"
+              ]
+            }
+          }
+        },
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "size": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "x": {
+          "title": "Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "axis": {
+            "title": "Value"
+          },
+          "aggregate": "mean",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "location",
+            "type": "nominal"
+          },
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "field": "value",
+            "type": "quantitative"
+          }
+        ]
+      },
+      "width": 800,
+      "height": 250,
+      "mark": {
+        "type": "trail"
+      },
+      "selection": {
+        "brush": {
+          "encodings": [
+            "x"
+          ],
+          "type": "interval"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "Measure"
+          }
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "size": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "color": {
+          "condition": {
+            "title": "Location",
+            "field": "location",
+            "scale": {
+              "scheme": "tableau10"
+            },
+            "selection": "brush",
+            "type": "nominal"
+          },
+          "value": "lightgray"
+        },
+        "x": {
+          "title": "Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "axis": {
+            "title": "Value"
+          },
+          "aggregate": "mean",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "location",
+            "type": "nominal"
+          },
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "field": "value",
+            "type": "quantitative"
+          }
+        ]
+      },
+      "width": 800,
+      "height": 250,
+      "mark": {
+        "type": "trail"
+      },
+      "selection": {
+        "brush": {
+          "encodings": [
+            "x"
+          ],
+          "type": "interval"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "click"
+          }
+        },
+        {
+          "filter": {
+            "selection": "Measure"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {}
+}

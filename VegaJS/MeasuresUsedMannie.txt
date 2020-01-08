@@ -1,0 +1,40 @@
+"Water temperature", 
+"Ammonium", 
+"Anionic active surfactants", 
+"Bicarbonates", 
+"Biochemical oxygen", 
+"Calcium", 
+"Chemical Oxygen Demand (Cr)", 
+"Chemical Oxygen Demand (Mn)", 
+"Chlorides", 
+"Dissolved oxygen", 
+"Magnesium", 
+"Nitrates", 
+"Nitrites", 
+"Orthophosphate-phosphorus", 
+"Oxygen saturation", 
+"Sodium", 
+"Sulphates", 
+"Total nitrogen", 
+"Total phoshporus", 
+"Arsenic", 
+"Atrazine", 
+"Cadmium", 
+"Chromium", 
+"Copper", 
+"Lead", 
+"Mercury", 
+"Nickel", 
+"Zinc", 
+"gamma-Hexachlorocyclohexane", 
+"p.p-DDT", 
+"AGOC-3A", 
+"Methylosmoline", 
+"Chlorodinine"
+
+
+
+Biochemical oxygen demand (BOD) is the amount of dissolved oxygen needed (i.e. demanded) by aerobic biological organisms to break down organic material present in a given water sample at certain temperature over a specific time period.
+
+
+Biochemical oxygen, Chemical oxygen demand (CR), chlorodonine, methylosmoline, Total nitrogen

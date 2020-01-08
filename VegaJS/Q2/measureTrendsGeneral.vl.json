@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "Measurement trends 2008 - 2016",
+  "transform": [
+    {
+      "calculate": "year(datum.sampleDate)",
+      "as": "year"
+    },
+    {
+      "filter": "(datum.measure === 'Water temperature' || datum.measure === 'Ammonium' || datum.measure === 'Anionic active surfactants' || datum.measure === 'Bicarbonates' || datum.measure === 'Biochemical Oxygen' || datum.measure === 'Calcium' || datum.measure === 'Chemical Oxygen Demand (Cr)' || datum.measure === 'Chemical Oxygen Demand (Mn)' || datum.measure === 'Chlorides' || datum.measure === 'Dissolved oxygen' || datum.measure === 'Magnesium' || datum.measure === 'Nitrates' || datum.measure === 'Nitrites' || datum.measure === 'Orthophosphate-phosphorus' || datum.measure === 'Oxygen saturation' || datum.measure === 'Sodium' || datum.measure === 'Sulphates' || datum.measure === 'Total nitrogen' || datum.measure === 'Total phoshporus' || datum.measure === 'Arsenic' || datum.measure === 'Cadmium' || datum.measure === 'Chromium' || datum.measure === 'Copper' || datum.measure === 'Lead' || datum.measure === 'Mercury' || datum.measure === 'Nickel' || datum.measure === 'Zinc' || datum.measure === 'gamma-Hexachlorocyclohexane' || datum.measure === 'p.p-DDT' || datum.measure === 'AGOC-3A' || datum.measure === 'Methylosmoline' || datum.measure === 'Chlorodinine') && datum.year >= 2008"
+    }
+  ],
+  "width": 1200,
+  "height": 150,
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "mark": "trail",
+  "encoding": {
+    "x": {
+      "field": "sampleDate",
+      "type": "temporal",
+      "axis": {
+        "title": "Time",
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {
+        "title": "Value",
+        "grid": true
+      }
+    },
+    "color": {
+      "field": "measure",
+      "type": "nominal",
+      "legend": null
+    },
+    "row": {
+      "field": "measure",
+      "type": "nominal",
+      "header": {
+        "title": "Measure"
+      }
+    }
+  },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "config": {}
+}

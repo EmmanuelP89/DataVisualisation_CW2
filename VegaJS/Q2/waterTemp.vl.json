@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "timeUnit": "year",
+        "field": "sampleDate",
+        "range": [
+          2005,
+          2016
+        ]
+      }
+    },
+    {
+      "filter": {
+        "field": "unit",
+        "equal": "C"
+      }
+    }
+  ],
+  "mark": "rect",
+  "width": 1200,
+  "encoding": {
+    "y": {
+      "field": "measure",
+      "type": "nominal"
+    },
+    "x": {
+      "field": "sampleDate",
+      "type": "ordinal",
+      "timeUnit": "yearmonth",
+      "sort": "ascending"
+    },
+    "row": {
+      "field": "unit",
+      "type": "nominal"
+    },
+    "color": {
+      "aggregate": "mean",
+      "field": "value",
+      "type": "quantitative"
+    }
+  },
+  "config": {}
+}

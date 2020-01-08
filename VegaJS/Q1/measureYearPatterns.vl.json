@@ -1,0 +1,130 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "Locating measurements throughout the years",
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "field": "id",
+          "as": "countOfID"
+        }
+      ],
+      "groupby": [
+        "sampleDate",
+        "location",
+        "measure"
+      ]
+    }
+  ],
+  "vconcat": [
+    {
+      "encoding": {
+        "color": {
+          "condition": {
+            "field": "location",
+            "scale": {
+              "scheme": "tableau10"
+            },
+            "selection": "click",
+            "type": "nominal"
+          },
+          "value": "lightgray"
+        },
+        "x": {
+          "aggregate": "count",
+          "field": "measure",
+          "type": "nominal"
+        },
+        "y": {
+          "title": "Location",
+          "field": "location",
+          "type": "nominal",
+          "sort": "-x"
+        }
+      },
+      "width": 800,
+      "mark": "bar",
+      "selection": {
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "color": {
+          "condition": {
+            "title": "Location",
+            "field": "location",
+            "scale": {
+              "scheme": "tableau10"
+            },
+            "selection": "brush",
+            "type": "nominal"
+          },
+          "value": "lightgray"
+        },
+        "x": {
+          "axis": {
+            "title": "YearMonth"
+          },
+          "field": "sampleDate",
+          "timeUnit": "yearmonth",
+          "type": "temporal"
+        },
+        "y": {
+          "axis": {
+            "title": "Count of measure"
+          },
+          "aggregate": "sum",
+          "field": "countOfID",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "aggregate": "sum",
+            "field": "countOfID",
+            "type": "quantitative"
+          }
+        ]
+      },
+      "width": 800,
+      "height": 300,
+      "mark": "trail",
+      "selection": {
+        "brush": {
+          "encodings": [
+            "x"
+          ],
+          "type": "interval"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "click"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {}
+}

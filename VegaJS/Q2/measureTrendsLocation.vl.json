@@ -1,0 +1,184 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "Measurement comparison between locations",
+  "data": {
+    "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
+  },
+  "transform": [
+    {
+      "calculate": "year(datum.sampleDate)",
+      "as": "year"
+    },
+    {
+      "filter": "(datum.measure === 'Water temperature' || datum.measure === 'Ammonium' || datum.measure === 'Anionic active surfactants' || datum.measure === 'Bicarbonates' || datum.measure === 'Biochemical Oxygen' || datum.measure === 'Calcium' || datum.measure === 'Chemical Oxygen Demand (Cr)' || datum.measure === 'Chemical Oxygen Demand (Mn)' || datum.measure === 'Chlorides' || datum.measure === 'Dissolved oxygen' || datum.measure === 'Magnesium' || datum.measure === 'Nitrates' || datum.measure === 'Nitrites' || datum.measure === 'Orthophosphate-phosphorus' || datum.measure === 'Oxygen saturation' || datum.measure === 'Sodium' || datum.measure === 'Sulphates' || datum.measure === 'Total nitrogen' || datum.measure === 'Total phosphorus' || datum.measure === 'Arsenic' || datum.measure === 'Cadmium' || datum.measure === 'Chromium' || datum.measure === 'Copper' || datum.measure === 'Lead' || datum.measure === 'Mercury' || datum.measure === 'Nickel' || datum.measure === 'Zinc' || datum.measure === 'gamma-Hexachlorocyclohexane' || datum.measure === 'p.p-DDT' || datum.measure === 'AGOC-3A' || datum.measure === 'Methylosmoline' || datum.measure === 'Chlorodinine') && datum.year >= 2008"
+    }
+  ],
+  "vconcat": [
+    {
+      "encoding": {
+        "color": {
+          "condition": {
+            "field": "location",
+            "scale": {
+              "scheme": "tableau20"
+            },
+            "selection": "click",
+            "type": "nominal"
+          },
+          "value": "lightgray"
+        },
+        "x": {
+          "aggregate": "count",
+          "field": "measure",
+          "type": "nominal"
+        },
+        "y": {
+          "title": "Count of Measure",
+          "field": "location",
+          "type": "nominal",
+          "sort": "-x"
+        }
+      },
+      "width": 800,
+      "mark": "bar",
+      "selection": {
+        "Measure": {
+          "type": "single",
+          "fields": [
+            "measure"
+          ],
+          "init": {
+            "measure": "Water temperature"
+          },
+          "bind": {
+            "measure": {
+              "input": "select",
+              "options": [
+                "Water temperature",
+                "Ammonium",
+                "Anionic active surfactants",
+                "Bicarbonates",
+                "Biochemical Oxygen",
+                "Calcium",
+                "Chemical Oxygen Demand (Cr)",
+                "Chemical Oxygen Demand (Mn)",
+                "Chlorides",
+                "Dissolved oxygen",
+                "Magnesium",
+                "Nitrates",
+                "Nitrites",
+                "Orthophosphate-phosphorus",
+                "Oxygen saturation",
+                "Sodium",
+                "Sulphates",
+                "Total nitrogen",
+                "Total phosphorus",
+                "Arsenic",
+                "Atrazine",
+                "Cadmium",
+                "Chromium",
+                "Copper",
+                "Lead",
+                "Mercury",
+                "Nickel",
+                "Zinc",
+                "gamma-Hexachlorocyclohexane",
+                "p.p-DDT",
+                "AGOC-3A",
+                "Methylosmoline",
+                "Chlorodinine"
+              ]
+            }
+          }
+        },
+        "click": {
+          "encodings": [
+            "color"
+          ],
+          "type": "multi"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "brush"
+          }
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "size": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "color": {
+          "condition": {
+            "title": "Location",
+            "field": "location",
+            "scale": {
+              "scheme": "tableau10"
+            },
+            "selection": "brush",
+            "type": "nominal"
+          },
+          "value": "lightgray"
+        },
+        "x": {
+          "title": "Date",
+          "field": "sampleDate",
+          "timeUnit": "yearmonthdate",
+          "type": "temporal"
+        },
+        "y": {
+          "axis": {
+            "title": "Value"
+          },
+          "aggregate": "mean",
+          "field": "value",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "location",
+            "type": "nominal"
+          },
+          {
+            "field": "sampleDate",
+            "type": "temporal"
+          },
+          {
+            "field": "value",
+            "type": "quantitative"
+          }
+        ]
+      },
+      "width": 800,
+      "height": 300,
+      "mark": {
+        "type": "trail"
+      },
+      "selection": {
+        "brush": {
+          "encodings": [
+            "x"
+          ],
+          "type": "interval"
+        }
+      },
+      "transform": [
+        {
+          "filter": {
+            "selection": "click"
+          }
+        },
+        {
+          "filter": {
+            "selection": "Measure"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {}
+}
