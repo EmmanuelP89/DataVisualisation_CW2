@@ -39,7 +39,7 @@
           "sort": "-x"
         }
       },
-      "width": 800,
+      "width": 900,
       "mark": "bar",
       "selection": {
         "Measure": {
