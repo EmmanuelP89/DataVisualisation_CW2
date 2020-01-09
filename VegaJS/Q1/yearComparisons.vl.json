@@ -10,7 +10,7 @@
       "as": "year"
     }
   ],
-  "width": 500,
+  "width": 900,
   "height": 70,
   "mark": "bar",
   "encoding": {
