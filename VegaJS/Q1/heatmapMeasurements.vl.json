@@ -38,7 +38,7 @@
     "y": {
       "field": "measure",
       "type": "nominal",
-      "title": "Month"
+      "title": "Measure"
     },
     "color": {
       "field": "measure",
