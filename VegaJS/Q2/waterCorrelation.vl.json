@@ -2,15 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "description": "Negative correlation between Water Temperature and Dissolved Oxygen",
   "transform": [
-    {
-      "calculate": "year(datum.sampleDate)",
-      "as": "year"
-    },
+    {"calculate": "year(datum.sampleDate)", "as": "year"},
     {
       "filter": "(datum.measure === 'Water temperature' || datum.measure === 'Dissolved oxygen') && datum.year >= 2008"
     }
   ],
-  "width": 1200,
+  "width": 900,
   "height": 150,
   "data": {
     "url": "https://raw.githubusercontent.com/EmmanuelP89/DataVisualisation_CW2/master/VAST.csv"
@@ -20,36 +17,20 @@
     "x": {
       "field": "sampleDate",
       "type": "temporal",
-      "axis": {
-        "title": "Time",
-        "grid": false
-      }
+      "axis": {"title": "Time", "grid": false}
     },
     "y": {
       "field": "value",
       "type": "quantitative",
-      "axis": {
-        "title": "Value",
-        "grid": true
-      }
+      "axis": {"title": "Value", "grid": true}
     },
-    "color": {
-      "field": "measure",
-      "type": "nominal",
-      "legend": null
-    },
+    "color": {"field": "measure", "type": "nominal", "legend": null},
     "row": {
       "field": "measure",
       "type": "nominal",
-      "header": {
-        "title": "Measure"
-      }
+      "header": {"title": "Measure"}
     }
   },
-  "resolve": {
-    "scale": {
-      "y": "independent"
-    }
-  },
+  "resolve": {"scale": {"y": "independent"}},
   "config": {}
 }
